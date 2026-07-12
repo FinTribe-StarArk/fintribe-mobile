@@ -1,1 +1,25 @@
+# Lint rules for the FinTribe project.
+#
+# Built on the recommended Flutter lints. Generated files are excluded so
+# freezed/json_serializable output doesn't produce noise.
 include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "**/*.freezed.dart"
+    - "**/*.g.dart"
+  errors:
+    # Treat forgotten awaits and dead code as build-breaking.
+    unawaited_futures: error
+
+linter:
+  rules:
+    prefer_const_constructors: true
+    prefer_final_locals: true
+    always_declare_return_types: true
+    require_trailing_commas: true
+    unawaited_futures: true
+    # Repos/services take public-named params assigned to private fields
+    # (e.g. `TransactionRepo({required ApiClient api}) : _api = api`) for clean
+    # DI + testability — intentional, so this rule stays off.
+    prefer_initializing_formals: false
